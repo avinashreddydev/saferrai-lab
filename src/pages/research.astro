@@ -1,0 +1,129 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { projects } from '../lib/data';
+---
+
+<Layout title="Research - SAFERR AI Lab">
+  <div class="container mx-auto px-4 py-12">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold mb-4">Our Research</h1>
+      <p class="text-lg max-w-3xl mx-auto">
+        At SAFERR AI Lab, we conduct cutting-edge research on the safety, reliability, and robustness of AI systems. Our projects span multiple domains and methodologies to address critical challenges in AI development and deployment.
+      </p>
+    </div>
+    
+    <div class="space-y-16">
+      {projects.map((project, index) => (
+        <div class={`project-item grid grid-cols-1 lg:grid-cols-2 gap-8 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+          <div class="project-image flex items-center justify-center">
+            {project.image ? (
+              <img 
+                src={project.image} 
+                alt={project.title}
+                class="rounded-lg shadow-md max-w-full w-full h-auto object-cover aspect-video"
+                onerror="this.src='/img/placeholder-project.jpg'"
+              />
+            ) : (
+              <div class="bg-base-200 rounded-lg shadow-md w-full aspect-video flex items-center justify-center">
+                <span class="text-lg font-medium text-base-content/60">{project.title}</span>
+              </div>
+            )}
+          </div>
+          
+          <div class="project-details">
+            <h2 class="text-2xl font-bold mb-3">{project.title}</h2>
+            <p class="mb-4">{project.description}</p>
+            
+            {project.leadResearchers && project.leadResearchers.length > 0 && (
+              <div class="mb-3">
+                <h3 class="font-semibold mb-1">Lead Researchers:</h3>
+                <p>{project.leadResearchers.join(', ')}</p>
+              </div>
+            )}
+            
+            {project.collaborators && project.collaborators.length > 0 && (
+              <div class="mb-3">
+                <h3 class="font-semibold mb-1">Collaborators:</h3>
+                <p>{project.collaborators.join(', ')}</p>
+              </div>
+            )}
+            
+            {project.funding && project.funding.length > 0 && (
+              <div>
+                <h3 class="font-semibold mb-1">Funding:</h3>
+                <p>{project.funding.join(', ')}</p>
+              </div>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <!-- Research methodology section -->
+    <div class="mt-24">
+      <h2 class="text-3xl font-bold text-center mb-12">Our Research Methodology</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="p-6 bg-base-100 rounded-lg shadow-md">
+          <div class="text-primary mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Rigorous Testing</h3>
+          <p>We develop comprehensive testing protocols to evaluate AI systems across diverse scenarios, identifying failure modes and weaknesses.</p>
+        </div>
+        
+        <div class="p-6 bg-base-100 rounded-lg shadow-md">
+          <div class="text-primary mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Formal Methods</h3>
+          <p>We apply formal verification techniques to provide mathematical guarantees about the behavior of AI systems in critical applications.</p>
+        </div>
+        
+        <div class="p-6 bg-base-100 rounded-lg shadow-md">
+          <div class="text-primary mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Adversarial Approaches</h3>
+          <p>We develop and test against adversarial examples to strengthen AI systems against targeted attacks and unexpected inputs.</p>
+        </div>
+        
+        <div class="p-6 bg-base-100 rounded-lg shadow-md">
+          <div class="text-primary mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Human-Centered Design</h3>
+          <p>We incorporate human factors and user experience considerations into the design and evaluation of safe AI systems.</p>
+        </div>
+        
+        <div class="p-6 bg-base-100 rounded-lg shadow-md">
+          <div class="text-primary mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Benchmarking</h3>
+          <p>We develop standardized benchmarks to enable consistent evaluation and comparison of AI systems across safety and reliability dimensions.</p>
+        </div>
+        
+        <div class="p-6 bg-base-100 rounded-lg shadow-md">
+          <div class="text-primary mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Ethical Analysis</h3>
+          <p>We conduct thorough ethical analyses of AI systems and applications to identify and address potential societal impacts and harms.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout> 

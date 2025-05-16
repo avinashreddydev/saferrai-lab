@@ -1,0 +1,505 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { publications } from '../lib/data';
+
+// Sort publications by year (newest first)
+const sortedPublications = [...publications].sort((a, b) => b.year - a.year);
+
+// Get unique years for the filter
+const years = [...new Set(sortedPublications.map(pub => pub.year))].sort((a, b) => b - a);
+
+// Get unique venues for the filter
+const venues = [...new Set(sortedPublications.map(pub => pub.venue))].sort();
+
+// Get all unique keywords for the filter
+const allKeywords = new Set<string>();
+sortedPublications.forEach(pub => {
+  pub.keywords.forEach(keyword => allKeywords.add(keyword));
+});
+const keywords = [...allKeywords].sort();
+
+// Helper function to convert to Pascal case
+const toPascalCase = (str: string): string => {
+  return str.split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+};
+
+// Pagination settings
+const publicationsPerPage = 10;
+const totalPages = Math.ceil(sortedPublications.length / publicationsPerPage);
+---
+
+<Layout title="Publications - SAFERR AI Lab">
+  <div class="container mx-auto px-4 py-12">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold mb-4">Publications</h1>
+      <p class="text-lg max-w-3xl mx-auto">
+        Explore our research publications on safety, reliability, and robustness of AI systems.
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <!-- Filters sidebar -->
+      <div class="lg:col-span-1">
+        <div class="sticky top-24 bg-base-100 p-4 rounded-lg shadow">
+          <h2 class="text-xl font-bold mb-4">Filters</h2>
+          
+          <div class="mb-4">
+            <h3 class="font-semibold mb-2">Year</h3>
+            <div class="flex flex-wrap gap-2" id="year-filters">
+              <button class="btn btn-xs btn-outline btn-primary active-filter" data-filter="all">All</button>
+              {years.map(year => (
+                <button class="btn btn-xs btn-outline" data-filter={year}>{year}</button>
+              ))}
+            </div>
+          </div>
+          
+          <div class="mb-4">
+            <h3 class="font-semibold mb-2">Venue</h3>
+            <div class="flex flex-wrap gap-2" id="venue-filters">
+              <button class="btn btn-xs btn-outline btn-primary active-filter" data-filter="all">All</button>
+              {venues.map(venue => (
+                <button class="btn btn-xs btn-outline" data-filter={venue}>{venue}</button>
+              ))}
+            </div>
+          </div>
+          
+          <div>
+            <h3 class="font-semibold mb-2">Topics</h3>
+            <div class="relative">
+              <button 
+                id="topics-dropdown-button" 
+                class="w-full text-left px-4 py-2 bg-white border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 flex justify-between items-center"
+              >
+                <span id="selected-topics-text">All Topics</span>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              
+              <div 
+                id="topics-dropdown-menu" 
+                class="absolute z-10 w-full mt-1 bg-white border-2 border-gray-200 rounded-lg shadow-lg hidden"
+              >
+                <div class="max-h-60 overflow-y-auto">
+                  <label class="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    <input type="checkbox" class="form-checkbox h-4 w-4 text-blue-600" value="all" checked>
+                    <span class="ml-2">All Topics</span>
+                  </label>
+                  {keywords.map(keyword => (
+                    <label class="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                      <input type="checkbox" class="form-checkbox h-4 w-4 text-blue-600" value={keyword}>
+                      <span class="ml-2">{toPascalCase(keyword)}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Publications list -->
+      <div class="lg:col-span-3">
+        <div class="space-y-8" id="publications-container">
+          {sortedPublications.map(pub => (
+            <div 
+              class="publication-item bg-base-100 p-6 rounded-lg shadow-md" 
+              data-year={pub.year} 
+              data-venue={pub.venue}
+              data-keywords={pub.keywords.join(',')}
+            >
+              <h3 class="text-xl font-bold mb-2">{pub.title}</h3>
+              <p class="text-sm mb-3">
+                {pub.authors.join(', ')} • {pub.venue} {pub.year}
+              </p>
+              <p class="mb-4">{pub.abstract}</p>
+              
+              <div class="flex flex-wrap gap-1 mb-4">
+                {pub.keywords.map(keyword => (
+                  <span class="badge badge-sm bg-teal-100 text-teal-800 px-2 py-1 rounded-md font-medium text-xs">
+                    {toPascalCase(keyword)}
+                  </span>
+                ))}
+              </div>
+              
+              <div class="flex flex-wrap gap-2">
+                {pub.pdf && (
+                  <a href={pub.pdf} class="btn btn-sm btn-outline bg-slate-500 text-white rounded-lg px-4" target="_blank" rel="noopener noreferrer">
+                    PDF
+                  </a>
+                )}
+                {pub.link && (
+                  <a href={pub.link} class="btn btn-sm btn-outline bg-slate-500 text-white rounded-lg px-4" target="_blank" rel="noopener noreferrer">
+                    Publisher
+                  </a>
+                )}
+                {pub.code && (
+                  <a href={pub.code} class="btn btn-sm btn-outline bg-slate-500 text-white rounded-lg px-4" target="_blank" rel="noopener noreferrer">
+                    Code
+                  </a>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex justify-center mt-8">
+          <div class="flex items-center space-x-2" id="pagination-controls">
+            <!-- Pagination buttons will be inserted here by JavaScript -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Helper function to convert to Pascal case
+    const toPascalCase = (str: string): string => {
+      return str.split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+    };
+
+    // State for active filters and pagination
+    let activeFilters = {
+      years: ['all'],
+      venues: ['all'],
+      keywords: ['all']
+    };
+    
+    let currentPage = 1;
+    const publicationsPerPage = 10;
+    let totalPages = Math.ceil(document.querySelectorAll('.publication-item').length / publicationsPerPage);
+    
+    // Update pagination controls
+    const updatePaginationControls = () => {
+      const paginationControls = document.getElementById('pagination-controls');
+      if (!paginationControls) return;
+
+      let paginationHTML = '';
+      
+      // Begin button (only show if not on first page)
+      if (currentPage > 1) {
+        paginationHTML += `
+          <button class="inline-flex items-center justify-center min-w-[2.5rem] h-10 px-3 text-sm font-semibold text-gray-600 bg-white border border-gray-200 rounded-full transition-colors hover:bg-gray-50 hover:border-gray-300 hover:text-gray-900" data-page="1" title="First Page">
+            Begin
+          </button>
+        `;
+      }
+      
+      // Previous button (only show if not on first page)
+      if (currentPage > 1) {
+        paginationHTML += `
+          <button class="inline-flex items-center justify-center min-w-[2.5rem] h-10 px-3 text-sm font-semibold text-gray-600 bg-white border border-gray-200 rounded-full transition-colors hover:bg-gray-50 hover:border-gray-300 hover:text-gray-900" data-page="${currentPage - 1}" title="Previous Page">
+            Prev
+          </button>
+        `;
+      }
+      
+      // Page numbers
+      const maxVisiblePages = 5;
+      let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+      let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+      
+      if (endPage - startPage + 1 < maxVisiblePages) {
+        startPage = Math.max(1, endPage - maxVisiblePages + 1);
+      }
+      
+      // Add first page and ellipsis if needed
+      if (startPage > 1) {
+        paginationHTML += `
+          <button class="inline-flex items-center justify-center w-10 h-10 text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-full transition-colors hover:bg-gray-50 hover:border-gray-300 hover:text-gray-900" data-page="1">1</button>
+          ${startPage > 2 ? '<span class="inline-flex items-center justify-center w-10 h-10 text-sm font-medium text-gray-500">...</span>' : ''}
+        `;
+      }
+      
+      // Add page numbers
+      for (let i = startPage; i <= endPage; i++) {
+        paginationHTML += `
+          <button class="inline-flex items-center justify-center w-10 h-10 text-sm font-medium ${i === currentPage ? 'bg-blue-500 text-white border-blue-500 shadow-sm' : 'text-gray-600 bg-white border border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-900'} border rounded-full transition-colors" data-page="${i}">${i}</button>
+        `;
+      }
+      
+      // Add last page and ellipsis if needed
+      if (endPage < totalPages) {
+        paginationHTML += `
+          ${endPage < totalPages - 1 ? '<span class="inline-flex items-center justify-center w-10 h-10 text-sm font-medium text-gray-500">...</span>' : ''}
+          <button class="inline-flex items-center justify-center w-10 h-10 text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-full transition-colors hover:bg-gray-50 hover:border-gray-300 hover:text-gray-900" data-page="${totalPages}">${totalPages}</button>
+        `;
+      }
+      
+      // Next button (only show if not on last page)
+      if (currentPage < totalPages) {
+        paginationHTML += `
+          <button class="inline-flex items-center justify-center min-w-[2.5rem] h-10 px-3 text-sm font-semibold text-gray-600 bg-white border border-gray-200 rounded-full transition-colors hover:bg-gray-50 hover:border-gray-300 hover:text-gray-900" data-page="${currentPage + 1}" title="Next Page">
+            Next
+          </button>
+        `;
+      }
+      
+      // Last button (only show if not on last page)
+      if (currentPage < totalPages) {
+        paginationHTML += `
+          <button class="inline-flex items-center justify-center min-w-[2.5rem] h-10 px-3 text-sm font-semibold text-gray-600 bg-white border border-gray-200 rounded-full transition-colors hover:bg-gray-50 hover:border-gray-300 hover:text-gray-900" data-page="${totalPages}" title="Last Page">
+            Last
+          </button>
+        `;
+      }
+      
+      paginationControls.innerHTML = paginationHTML;
+      
+      // Add click handlers to pagination buttons
+      paginationControls.querySelectorAll('button[data-page]').forEach(button => {
+        button.addEventListener('click', () => {
+          const page = parseInt(button.getAttribute('data-page') || '1');
+          if (page !== currentPage) {
+            currentPage = page;
+            filterAndPaginatePublications();
+          }
+        });
+      });
+    };
+    
+    // Filter and paginate publications
+    const filterAndPaginatePublications = () => {
+      const publications = document.querySelectorAll('.publication-item');
+      let visibleCount = 0;
+      let visiblePublications: Element[] = [];
+      
+      // First, filter the publications
+      publications.forEach(pub => {
+        const year = pub.getAttribute('data-year');
+        const venue = pub.getAttribute('data-venue');
+        const keywords = pub.getAttribute('data-keywords')?.split(',') || [];
+        
+        const matchesYear = activeFilters.years.includes('all') || (year && activeFilters.years.includes(year));
+        const matchesVenue = activeFilters.venues.includes('all') || (venue && activeFilters.venues.includes(venue));
+        const matchesKeyword = activeFilters.keywords.includes('all') || keywords.some(k => activeFilters.keywords.includes(k));
+        
+        if (matchesYear && matchesVenue && matchesKeyword) {
+          visiblePublications.push(pub);
+          visibleCount++;
+        } else {
+          (pub as HTMLElement).style.display = 'none';
+        }
+      });
+      
+      // Update total pages based on visible publications
+      totalPages = Math.ceil(visibleCount / publicationsPerPage);
+      if (currentPage > totalPages) {
+        currentPage = 1;
+      }
+      
+      // Then, paginate the visible publications
+      const startIndex = (currentPage - 1) * publicationsPerPage;
+      const endIndex = startIndex + publicationsPerPage;
+      
+      visiblePublications.forEach((pub, index) => {
+        if (index >= startIndex && index < endIndex) {
+          (pub as HTMLElement).style.display = 'block';
+        } else {
+          (pub as HTMLElement).style.display = 'none';
+        }
+      });
+      
+      updatePaginationControls();
+    };
+
+    // Topics dropdown handling
+    const topicsButton = document.getElementById('topics-dropdown-button');
+    const topicsMenu = document.getElementById('topics-dropdown-menu');
+    const selectedTopicsText = document.getElementById('selected-topics-text');
+    const topicCheckboxes = document.querySelectorAll('#topics-dropdown-menu input[type="checkbox"]');
+    
+    if (topicsButton && topicsMenu && selectedTopicsText) {
+      // Toggle dropdown
+      topicsButton.addEventListener('click', () => {
+        topicsMenu.classList.toggle('hidden');
+      });
+      
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!topicsButton.contains(e.target as Node) && !topicsMenu.contains(e.target as Node)) {
+          topicsMenu.classList.add('hidden');
+        }
+      });
+      
+      // Handle checkbox changes
+      topicCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+          const allCheckbox = document.querySelector('#topics-dropdown-menu input[value="all"]') as HTMLInputElement;
+          
+          if ((checkbox as HTMLInputElement).value === 'all') {
+            // If "All" is checked, uncheck others
+            topicCheckboxes.forEach(cb => {
+              if (cb !== checkbox) {
+                (cb as HTMLInputElement).checked = false;
+              }
+            });
+            activeFilters.keywords = ['all'];
+            selectedTopicsText.innerHTML = `<span class="inline-block border border-gray-300 rounded px-2 py-1 bg-gray-50">All Topics</span>`;
+          } else {
+            // If a specific topic is checked, uncheck "All"
+            if (allCheckbox) {
+              allCheckbox.checked = false;
+            }
+            
+            // Get all checked topics
+            const checkedTopics = Array.from(topicCheckboxes)
+              .filter(cb => (cb as HTMLInputElement).checked)
+              .map(cb => (cb as HTMLInputElement).value);
+            
+            if (checkedTopics.length === 0) {
+              // If nothing is checked, check "All"
+              allCheckbox.checked = true;
+              activeFilters.keywords = ['all'];
+              selectedTopicsText.innerHTML = `<span class="inline-block border border-gray-300 rounded px-2 py-1 bg-gray-50">All Topics</span>`;
+            } else {
+              activeFilters.keywords = checkedTopics;
+              if (checkedTopics.length === 1) {
+                selectedTopicsText.innerHTML = `<span class="inline-block border border-gray-300 rounded px-2 py-1 bg-gray-50">${toPascalCase(checkedTopics[0])}</span>`;
+              } else {
+                selectedTopicsText.innerHTML = checkedTopics
+                  .map(topic => `<span class="inline-block border border-gray-300 rounded px-2 py-1 bg-gray-50 mr-2 mb-1">${toPascalCase(topic)}</span>`)
+                  .join('');
+              }
+            }
+          }
+          
+          filterAndPaginatePublications();
+        });
+      });
+    }
+
+    // Add event listeners to year filter buttons
+    const yearFilters = document.querySelectorAll('#year-filters button');
+    yearFilters.forEach(button => {
+      button.addEventListener('click', () => {
+        const filterValue = button.getAttribute('data-filter') || 'all';
+        
+        if (filterValue === 'all') {
+          yearFilters.forEach(btn => {
+            btn.classList.remove('active-filter', 'bg-blue-600', 'text-white', 'rounded-full', 'px-4');
+            btn.classList.add('btn-outline');
+          });
+          button.classList.add('active-filter', 'bg-blue-600', 'text-white', 'rounded-full', 'px-4');
+          button.classList.remove('btn-outline');
+          activeFilters.years = ['all'];
+        } else {
+          const allButton = document.querySelector('#year-filters button[data-filter="all"]');
+          if (allButton) {
+            allButton.classList.remove('active-filter', 'bg-blue-600', 'text-white', 'rounded-full', 'px-4');
+            allButton.classList.add('btn-outline');
+          }
+          
+          if (button.classList.contains('active-filter')) {
+            button.classList.remove('active-filter', 'bg-blue-600', 'text-white', 'rounded-full', 'px-4');
+            button.classList.add('btn-outline');
+            activeFilters.years = activeFilters.years.filter(y => y !== filterValue);
+            
+            if (activeFilters.years.length === 0) {
+              if (allButton) {
+                allButton.classList.add('active-filter', 'bg-blue-600', 'text-white', 'rounded-full', 'px-4');
+                allButton.classList.remove('btn-outline');
+              }
+              activeFilters.years = ['all'];
+            }
+          } else {
+            button.classList.add('active-filter', 'bg-blue-600', 'text-white', 'rounded-full', 'px-4');
+            button.classList.remove('btn-outline');
+            activeFilters.years = activeFilters.years.filter(y => y !== 'all');
+            activeFilters.years.push(filterValue);
+          }
+        }
+        
+        filterAndPaginatePublications();
+      });
+    });
+    
+    // Add event listeners to venue filter buttons
+    const venueFilters = document.querySelectorAll('#venue-filters button');
+    venueFilters.forEach(button => {
+      button.addEventListener('click', () => {
+        const filterValue = button.getAttribute('data-filter') || 'all';
+        
+        if (filterValue === 'all') {
+          venueFilters.forEach(btn => {
+            btn.classList.remove('active-filter', 'bg-blue-600', 'text-white', 'rounded-full', 'px-4');
+            btn.classList.add('btn-outline');
+          });
+          button.classList.add('active-filter', 'bg-blue-600', 'text-white', 'rounded-full', 'px-4');
+          button.classList.remove('btn-outline');
+          activeFilters.venues = ['all'];
+        } else {
+          const allButton = document.querySelector('#venue-filters button[data-filter="all"]');
+          if (allButton) {
+            allButton.classList.remove('active-filter', 'bg-blue-600', 'text-white', 'rounded-full', 'px-4');
+            allButton.classList.add('btn-outline');
+          }
+          
+          if (button.classList.contains('active-filter')) {
+            button.classList.remove('active-filter', 'bg-blue-600', 'text-white', 'rounded-full', 'px-4');
+            button.classList.add('btn-outline');
+            activeFilters.venues = activeFilters.venues.filter(v => v !== filterValue);
+            
+            if (activeFilters.venues.length === 0) {
+              if (allButton) {
+                allButton.classList.add('active-filter', 'bg-blue-600', 'text-white', 'rounded-full', 'px-4');
+                allButton.classList.remove('btn-outline');
+              }
+              activeFilters.venues = ['all'];
+            }
+          } else {
+            button.classList.add('active-filter', 'bg-blue-600', 'text-white', 'rounded-full', 'px-4');
+            button.classList.remove('btn-outline');
+            activeFilters.venues = activeFilters.venues.filter(v => v !== 'all');
+            activeFilters.venues.push(filterValue);
+          }
+        }
+        
+        filterAndPaginatePublications();
+      });
+    });
+
+    // Initialize pagination
+    filterAndPaginatePublications();
+  });
+</script>
+
+<style>
+  /* Custom styles for the topics dropdown */
+  #topics-dropdown-menu {
+    scrollbar-width: thin;
+    scrollbar-color: #CBD5E0 #EDF2F7;
+  }
+  
+  #topics-dropdown-menu::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  #topics-dropdown-menu::-webkit-scrollbar-track {
+    background: #EDF2F7;
+    border-radius: 4px;
+  }
+  
+  #topics-dropdown-menu::-webkit-scrollbar-thumb {
+    background-color: #CBD5E0;
+    border-radius: 4px;
+  }
+  
+  /* Checkbox styles */
+  .form-checkbox {
+    border-radius: 0.25rem;
+    border-color: #CBD5E0;
+  }
+  
+  .form-checkbox:checked {
+    background-color: #2563EB;
+    border-color: #2563EB;
+  }
+</style> 

@@ -1,0 +1,68 @@
+---
+const navLinks = [
+  { name: 'Home', url: '/' },
+  { name: 'Research', url: '/research' },
+  { name: 'Publications', url: '/publications' },
+  { name: 'People', url: '/people' },
+  { name: 'Blog', url: '/blog' },
+];
+---
+
+<header class="bg-base-100 shadow-md">
+  <div class="container mx-auto px-4 py-3">
+    <nav class="flex  flex-col md:flex-row justify-between items-center">
+
+      <div class="flex flex-row items-center justify-between w-full">
+
+
+        <div class="flex items-center mb-3 md:mb-0">
+          <a href="/" class="flex items-center space-x-2">
+            <img src="/logo.png" alt="SAFERR AI Lab" class="h-10 w-50">
+          </a>
+        </div>
+        
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button id="menu-toggle" class="btn btn-ghost">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Desktop navigation -->
+      <div class="hidden md:flex md:items-center space-x-6">
+        {navLinks.map(link => (
+          <a href={link.url} class="font-medium hover:text-primary transition-colors">
+            {link.name}
+          </a>
+        ))}
+      </div>
+      
+      <!-- Mobile navigation -->
+      <div id="mobile-menu" class="hidden w-full md:hidden">
+        <div class="flex flex-col space-y-3 mt-3">
+          {navLinks.map(link => (
+            <a href={link.url} class="font-medium hover:text-primary transition-colors">
+              {link.name}
+            </a>
+          ))}
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+  });
+</script> 
