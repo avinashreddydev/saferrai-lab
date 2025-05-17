@@ -1,5 +1,9 @@
 ---
 import { news } from '../lib/data';
+
+const formatDate = (date: Date) => {
+  return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+};
 ---
 
 <section class="bg-gradient-to-r from-primary/10 to-accent/10 py-16 md:py-24">
@@ -22,7 +26,7 @@ import { news } from '../lib/data';
           <div class="space-y-4">
             {news.slice(0, 3).map((item) => (
               <div class="p-3 border-l-4 border-primary bg-base-200 rounded">
-                <p class="text-sm text-gray-500">{item.date}</p>
+                <p class="text-sm text-gray-500">{formatDate(item.date)}</p>
                 <h3 class="font-medium">{item.title}</h3>
                 <p class="text-sm mt-1">
                   {item.excerpt}
