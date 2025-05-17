@@ -31,6 +31,7 @@ const ogTitle = entry.data.title;
 const ogDescription = entry.data.description || entry.data.title; 
 const ogImage = entry.data.image || '/ogimage.png';
 const ogUrl = `https://saferrai-lab.org/blog/${entry.slug}`;
+const ogLogo = "/logo.png";
 ---
 
 <Layout 
@@ -47,6 +48,7 @@ const ogUrl = `https://saferrai-lab.org/blog/${entry.slug}`;
   <meta property="og:title" content={ogTitle} />
   <meta property="og:description" content={ogDescription} />
   <meta property="og:image" content={ogImage} />
+  <meta property="og:logo" content={ogLogo} />
   <meta property="og:site_name" content="SAFERR AI Lab" />
   <meta property="og:locale" content="en_US" />
   <meta property="article:author" content={entry.data.author} />
