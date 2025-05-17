@@ -5,9 +5,21 @@ import Footer from '../components/Footer.astro';
 interface Props {
 	title: string;
 	description?: string;
+	image?: string;
 }
 
-const { title, description = "SAFERR AI Lab - Safety, Reliability, and Robustness of AI" } = Astro.props;
+const { 
+	title, 
+	description = "SAFERR AI Lab - Safety, Reliability, and Robustness of AI",
+	image = 'https://saferrai-lab.org/ogimage.png'
+} = Astro.props;
+
+// Social Media metadata
+const ogTitle = title;
+const ogDescription = description;
+const ogImage = image;
+const ogUrl = "https://saferrai-lab.org";
+const ogLogo = "https://saferrai-lab.org/logo.png";
 ---
 
 <!doctype html>
@@ -21,8 +33,64 @@ const { title, description = "SAFERR AI Lab - Safety, Reliability, and Robustnes
 		<!-- KaTeX CSS for LaTeX rendering -->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
 		<title>{title}</title>
+
+		{/* Primary Meta Tags */}
+		<meta name="title" content={ogTitle} />
+		<meta name="description" content={ogDescription} />
+		<link rel="canonical" href={ogUrl} />
+		<meta name="robots" content="index, follow" />
+
+		{/* Open Graph / Facebook */}
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={ogUrl} />
+		<meta property="og:title" content={ogTitle} />
+		<meta property="og:description" content={ogDescription} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:type" content="image/png" />
+		<meta property="og:site_name" content="SAFERR AI Lab" />
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:logo" content={ogLogo} />
+
+		{/* Twitter */}
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={ogTitle} />
+		<meta name="twitter:description" content={ogDescription} />
+		<meta name="twitter:image" content={ogImage} />
+
+		{/* Additional Meta Tags */}
+		<meta name="theme-color" content="#3b82f6" />
+		<meta name="msapplication-TileColor" content="#3b82f6" />
+		<meta name="msapplication-TileImage" content={ogImage} />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="apple-mobile-web-app-title" content="SAFERR AI Lab" />
+		<meta name="application-name" content="SAFERR AI Lab" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="mobile-web-app-capable" content="yes" />
+
+		{/* Structured Data: Organization */}
+		<script type="application/ld+json" is:inline>{JSON.stringify({
+			'@context': 'https://schema.org',
+			'@type': 'Organization',
+			name: 'SAFERR AI Lab',
+			url: ogUrl,
+			logo: ogLogo,
+			description: ogDescription
+		})}</script>
+
+		<!-- Google Tag Manager -->
+		<script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+			new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+			})(window,document,'script','dataLayer','GTM-5GPST242');</script>
+		<!-- End Google Tag Manager -->
 	</head>
 	<body class="flex flex-col min-h-screen">
+		<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5GPST242"
+			height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<!-- End Google Tag Manager (noscript) -->
 		<Header />
 		<main class="flex-grow">
 			<slot />
