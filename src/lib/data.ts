@@ -13,211 +13,211 @@ export interface Publication {
 }
 
 export const publications: Publication[] = [
-    
-  {
-    id: "nips-24-fact-free-riding",
-    title: "FACT or Fiction: Can Truthful Mechanisms Eliminate Federated Free Riding?",
-    authors: ["M. Bosnstein", "A. S. Bedi", "A. Mohamed", "F. Huang"],
-    venue: "NeurIPS",
-    year: 2024,
-    abstract: "",
-    link: "https://arxiv.org/pdf/2405.13879",
-    code: "",
-    pdf: "",
-    keywords: ["federated learning", "mechanism design", "truthfulness", "free riding", "distributed systems"]
-  },
-  {
-    id: "nips-24-transferq-llm-alignment",
-    title: "Transfer Q*: Principled Decoding for LLM Alignment",
-    authors: ["S. Chakraborty", "S. Ghoshal", "M. Yin", "D. Manocha", "M. Wang", "A. S. Bedi", "F. Huang"],
-    venue: "NeurIPS",
-    year: 2024,
-    abstract: "",
-    link: "https://arxiv.org/pdf/2405.20495",
-    code: "",
-    pdf: "",
-    keywords: ["large language models", "alignment", "decoding", "LLM", "transfer learning"]
-  },
-  {
-    id: "iros-24-selective-multi-robot-rl",
-    title: "When, What, and with Whom to Communicate: Enhancing RL-based Multi-Robot Navigation through Selective Communication",
-    authors: ["S. H. Arul", "A. S. Bedi", "D. Manocha"],
-    venue: "IROS",
-    year: 2024,
-    abstract: "",
-    link: "",
-    code: "",
-    pdf: "",
-    keywords: ["multi-robot", "reinforcement learning", "selective communication", "robot navigation"]
-  },
-  {
-    id: "iros-24-lancar-language-robot",
-    title: "LANCAR: Leveraging Language for Context-Aware Robot Locomotion in Unstructured Environments",
-    authors: ["C. L. Shek", "X. Wu", "W. A. Suttle", "C. Busart", "E. Zaroukian", "D. Manocha", "P. Tokekar", "A. S. Bedi"],
-    venue: "IROS",
-    year: 2024,
-    abstract: "",
-    link: "https://arxiv.org/pdf/2310.00481",
-    code: "",
-    pdf: "",
-    keywords: ["robot locomotion", "natural language", "context-aware", "unstructured environments"]
-  },
-  {
-    id: "iros-24-trustnavgpt-audio-nav",
-    title: "TrustNavGPT: Trust-Driven Audio-Guided Robot Navigation under Uncertainty with Large Language Models",
-    authors: ["X. Sun", "Y. Zhang", "X. Tang", "A. S. Bedi", "A. Bera"],
-    venue: "IROS",
-    year: 2024,
-    abstract: "",
-    link: "",
-    code: "",
-    pdf: "",
-    keywords: ["robot navigation", "audio guidance", "uncertainty", "large language models", "trust"]
-  },
-  {
-    id: "icml-24-piper-hierarchical-rl",
-    title: "PIPER: Primitive-Informed Preference-based Hierarchical Reinforcement Learning via Hindsight Relabeling",
-    authors: ["U. Singh", "W. A. Suttle", "B. M. Sadler", "V. P. Namboodiri", "A. S. Bedi"],
-    venue: "ICML",
-    year: 2024,
-    abstract: "",
-    link: "https://openreview.net/pdf/486d2e3f8b1d6cd84cc050e257c70fda5c2f6980.pdf",
-    code: "",
-    pdf: "",
-    keywords: ["hierarchical reinforcement learning", "preference learning", "primitives", "hindsight relabeling"]
-  },
-  {
-    id: "icml-24-maxmin-rlhf-alignment",
-    title: "MaxMin-RLHF: Towards Equitable Alignment of Large Language Models with Diverse Human Preferences",
-    authors: ["S. Chakraborty", "J. Qiu", "H. Yuan", "A. Koppel", "F. Huang", "D. Manocha", "A. S. Bedi", "M. Wang"],
-    venue: "ICML",
-    year: 2024,
-    abstract: "",
-    link: "https://arxiv.org/pdf/2402.08925",
-    code: "",
-    pdf: "",
-    keywords: ["RLHF", "LLM alignment", "human preferences", "large language models", "equity"]
-  },
-  {
-    id: "icml-24-ai-text-detection",
-    title: "On the possibilities of ai-generated text detection",
-    authors: ["S. Chakraborty*", "A. S. Bedi*", "S.", "Zhu", "B. An", "D. Manocha", "F. Huang"],
-    venue: "ICML",
-    year: 2024,
-    abstract: "",
-    link: "https://arxiv.org/pdf/2304.04736",
-    code: "",
-    pdf: "",
-    keywords: ["AI-generated text", "text detection", "deep learning", "LLM"]
-  },
-  {
-    id: "iclr-24-parl-policy-align",
-    title: "PARL: A Unified Framework for Policy Alignment in Reinforcement Learning",
-    authors: ["S. Chakraborty", "A. S. Bedi", "A. Koppel", "D. Manocha", "H. Wang", "M. Wang", "F. Huang"],
-    venue: "ICLR",
-    year: 2024,
-    abstract: "",
-    link: "https://arxiv.org/pdf/2308.02585.pdf",
-    code: "",
-    pdf: "",
-    keywords: ["policy alignment", "reinforcement learning", "RL", "framework"]
-  },
-  {
-    id: "icml-23-steering-model-based-rl",
-    title: "STEERING: Stein Information Directed Exploration for Model-Based Reinforcement Learning",
-    authors: ["S. Chakraborty", "A. S. Bedi", "A. Koppel", "M. Wang", "F. Huang", "D. Manocha"],
-    venue: "ICML",
-    year: 2023,
-    abstract: "",
-    link: "https://arxiv.org/pdf/2301.12038.pdf",
-    code: "",
-    pdf: "",
-    keywords: ["model-based RL", "Stein information", "exploration", "reinforcement learning"]
-  },
-  {
-    id: "icml-23-multilevel-montecarlo-rl",
-    title: "Beyond Exponentially Fast Mixing in Average-Reward Reinforcement Learning via Multi-Level Monte Carlo Actor-Critic",
-    authors: ["A. S. Bedi*", "W. Suttle*", "B. Patel", "B. Sadler", "A. Koppel", "D. Manocha"],
-    venue: "ICML",
-    year: 2023,
-    abstract: "",
-    link: "https://arxiv.org/pdf/2301.12083.pdf",
-    code: "",
-    pdf: "",
-    keywords: ["reinforcement learning", "average reward", "Monte Carlo", "actor-critic"]
-  },
-  {
-    id: "iclr-23-swift-federated-learning",
-    title: "SWIFT: Rapid Decentralized Federated Learning via Wait-Free Model Communication",
-    authors: ["M. Bornstein", "T. Rabbani", "E. Wang", "A. S. Bedi", "F. Huang"],
-    venue: "ICLR",
-    year: 2023,
-    abstract: "",
-    link: "https://openreview.net/pdf?id=jh1nCir1R3d",
-    code: "",
-    pdf: "",
-    keywords: ["federated learning", "decentralized", "wait-free", "communication", "distributed systems"]
-  },
-  {
-    id: "icra-23-sparse-rewards-rl",
-    title: "Dealing with Sparse Rewards in Continuous Control Robotics via Heavy-Tailed Policy Optimization",
-    authors: ["S.Chakraborty", "A. S. Bedi", "K. Weerakoon", "P. Poddar", "A. Koppel", "P. Tokekar", "D. Manocha"],
-    venue: "ICRA",
-    year: 2023,
-    abstract: "",
-    link: "https://arxiv.org/search/cs?searchtype=author&query=Bedi%2C+A+S",
-    code: "",
-    pdf: "",
-    keywords: ["sparse rewards", "policy optimization", "robotics", "reinforcement learning", "heavy-tailed"]
-  },
-  {
-    id: "icra-23-multi-robot-task-rl",
-    title: "RTAW: An Attention Inspired Reinforcement Learning Method for Multi-Robot Task Allocation in Warehouse Environments",
-    authors: ["A. Aggarwal", "A. S. Bedi", "D. Manocha"],
-    venue: "ICRA",
-    year: 2023,
-    abstract: "",
-    link: "https://arxiv.org/search/cs?searchtype=author&query=Bedi%2C+A+S",
-    code: "",
-    pdf: "",
-    keywords: ["multi-robot", "task allocation", "warehouse", "attention", "reinforcement learning"]
-  },
-  {
-    id: "icra-23-decentralized-exploration",
-    title: "Decentralized Multi-agent Exploration with Limited Inter-agent Communications",
-    authors: ["H. He", "A. Koppel", "A. S. Bedi", "D. Stilwell", "M. Farhood"],
-    venue: "ICRA",
-    year: 2023,
-    abstract: "",
-    link: "https://arxiv.org/search/cs?searchtype=author&query=Bedi%2C+A+S",
-    code: "",
-    pdf: "",
-    keywords: ["decentralized", "multi-agent", "exploration", "communication", "robotics"]
-  },
-  {
-    id: "aaai-23-constrained-rl",
-    title: "Achieving Zero Constraint Violation for Constrained Reinforcement Learning via Conservative Natural Policy Gradient Primal-Dual Algorithm",
-    authors: ["Q. Bai", "A. S. Bedi", "V. Aggarwal"],
-    venue: "AAAI",
-    year: 2023,
-    abstract: "",
-    link: "https://arxiv.org/search/cs?searchtype=author&query=Bai%2C+Q",
-    code: "",
-    pdf: "",
-    keywords: ["constrained RL", "policy gradient", "primal-dual", "reinforcement learning"]
-  },
-  {
-    id: "aaai-23-coreset-stein-rl",
-    title: "Posterior Coreset Construction with Kernelized Stein Discrepancy for Model-Based Reinforcement Learning",
-    authors: ["S.Chakraborty", "A. S. Bedi", "A. Koppel", "B. Sadler", "F. Huang", "P. Tokekar", "D. Manocha"],
-    venue: "AAAI",
-    year: 2023,
-    abstract: "",
-    link: "https://arxiv.org/search/cs?searchtype=author&query=Bedi%2C+A+S",
-    code: "",
-    pdf: "",
-    keywords: ["coreset", "Stein discrepancy", "model-based RL", "reinforcement learning"]
-  },
+
+    {
+        id: "nips-24-fact-free-riding",
+        title: "FACT or Fiction: Can Truthful Mechanisms Eliminate Federated Free Riding?",
+        authors: ["M. Bosnstein", "A. S. Bedi", "A. Mohamed", "F. Huang"],
+        venue: "NeurIPS",
+        year: 2024,
+        abstract: "",
+        link: "https://arxiv.org/pdf/2405.13879",
+        code: "",
+        pdf: "",
+        keywords: ["federated learning", "mechanism design", "truthfulness", "free riding", "distributed systems"]
+    },
+    {
+        id: "nips-24-transferq-llm-alignment",
+        title: "Transfer Q*: Principled Decoding for LLM Alignment",
+        authors: ["S. Chakraborty", "S. Ghoshal", "M. Yin", "D. Manocha", "M. Wang", "A. S. Bedi", "F. Huang"],
+        venue: "NeurIPS",
+        year: 2024,
+        abstract: "",
+        link: "https://arxiv.org/pdf/2405.20495",
+        code: "",
+        pdf: "",
+        keywords: ["large language models", "alignment", "decoding", "LLM", "transfer learning"]
+    },
+    {
+        id: "iros-24-selective-multi-robot-rl",
+        title: "When, What, and with Whom to Communicate: Enhancing RL-based Multi-Robot Navigation through Selective Communication",
+        authors: ["S. H. Arul", "A. S. Bedi", "D. Manocha"],
+        venue: "IROS",
+        year: 2024,
+        abstract: "",
+        link: "",
+        code: "",
+        pdf: "",
+        keywords: ["multi-robot", "reinforcement learning", "selective communication", "robot navigation"]
+    },
+    {
+        id: "iros-24-lancar-language-robot",
+        title: "LANCAR: Leveraging Language for Context-Aware Robot Locomotion in Unstructured Environments",
+        authors: ["C. L. Shek", "X. Wu", "W. A. Suttle", "C. Busart", "E. Zaroukian", "D. Manocha", "P. Tokekar", "A. S. Bedi"],
+        venue: "IROS",
+        year: 2024,
+        abstract: "",
+        link: "https://arxiv.org/pdf/2310.00481",
+        code: "",
+        pdf: "",
+        keywords: ["robot locomotion", "natural language", "context-aware", "unstructured environments"]
+    },
+    {
+        id: "iros-24-trustnavgpt-audio-nav",
+        title: "TrustNavGPT: Trust-Driven Audio-Guided Robot Navigation under Uncertainty with Large Language Models",
+        authors: ["X. Sun", "Y. Zhang", "X. Tang", "A. S. Bedi", "A. Bera"],
+        venue: "IROS",
+        year: 2024,
+        abstract: "",
+        link: "",
+        code: "",
+        pdf: "",
+        keywords: ["robot navigation", "audio guidance", "uncertainty", "large language models", "trust"]
+    },
+    {
+        id: "icml-24-piper-hierarchical-rl",
+        title: "PIPER: Primitive-Informed Preference-based Hierarchical Reinforcement Learning via Hindsight Relabeling",
+        authors: ["U. Singh", "W. A. Suttle", "B. M. Sadler", "V. P. Namboodiri", "A. S. Bedi"],
+        venue: "ICML",
+        year: 2024,
+        abstract: "",
+        link: "https://openreview.net/pdf/486d2e3f8b1d6cd84cc050e257c70fda5c2f6980.pdf",
+        code: "",
+        pdf: "",
+        keywords: ["hierarchical reinforcement learning", "preference learning", "primitives", "hindsight relabeling"]
+    },
+    {
+        id: "icml-24-maxmin-rlhf-alignment",
+        title: "MaxMin-RLHF: Towards Equitable Alignment of Large Language Models with Diverse Human Preferences",
+        authors: ["S. Chakraborty", "J. Qiu", "H. Yuan", "A. Koppel", "F. Huang", "D. Manocha", "A. S. Bedi", "M. Wang"],
+        venue: "ICML",
+        year: 2024,
+        abstract: "",
+        link: "https://arxiv.org/pdf/2402.08925",
+        code: "",
+        pdf: "",
+        keywords: ["RLHF", "LLM alignment", "human preferences", "large language models", "equity"]
+    },
+    {
+        id: "icml-24-ai-text-detection",
+        title: "On the possibilities of ai-generated text detection",
+        authors: ["S. Chakraborty*", "A. S. Bedi*", "S.", "Zhu", "B. An", "D. Manocha", "F. Huang"],
+        venue: "ICML",
+        year: 2024,
+        abstract: "",
+        link: "https://arxiv.org/pdf/2304.04736",
+        code: "",
+        pdf: "",
+        keywords: ["AI-generated text", "text detection", "deep learning", "LLM"]
+    },
+    {
+        id: "iclr-24-parl-policy-align",
+        title: "PARL: A Unified Framework for Policy Alignment in Reinforcement Learning",
+        authors: ["S. Chakraborty", "A. S. Bedi", "A. Koppel", "D. Manocha", "H. Wang", "M. Wang", "F. Huang"],
+        venue: "ICLR",
+        year: 2024,
+        abstract: "",
+        link: "https://arxiv.org/pdf/2308.02585.pdf",
+        code: "",
+        pdf: "",
+        keywords: ["policy alignment", "reinforcement learning", "RL", "framework"]
+    },
+    {
+        id: "icml-23-steering-model-based-rl",
+        title: "STEERING: Stein Information Directed Exploration for Model-Based Reinforcement Learning",
+        authors: ["S. Chakraborty", "A. S. Bedi", "A. Koppel", "M. Wang", "F. Huang", "D. Manocha"],
+        venue: "ICML",
+        year: 2023,
+        abstract: "",
+        link: "https://arxiv.org/pdf/2301.12038.pdf",
+        code: "",
+        pdf: "",
+        keywords: ["model-based RL", "Stein information", "exploration", "reinforcement learning"]
+    },
+    {
+        id: "icml-23-multilevel-montecarlo-rl",
+        title: "Beyond Exponentially Fast Mixing in Average-Reward Reinforcement Learning via Multi-Level Monte Carlo Actor-Critic",
+        authors: ["A. S. Bedi*", "W. Suttle*", "B. Patel", "B. Sadler", "A. Koppel", "D. Manocha"],
+        venue: "ICML",
+        year: 2023,
+        abstract: "",
+        link: "https://arxiv.org/pdf/2301.12083.pdf",
+        code: "",
+        pdf: "",
+        keywords: ["reinforcement learning", "average reward", "Monte Carlo", "actor-critic"]
+    },
+    {
+        id: "iclr-23-swift-federated-learning",
+        title: "SWIFT: Rapid Decentralized Federated Learning via Wait-Free Model Communication",
+        authors: ["M. Bornstein", "T. Rabbani", "E. Wang", "A. S. Bedi", "F. Huang"],
+        venue: "ICLR",
+        year: 2023,
+        abstract: "",
+        link: "https://openreview.net/pdf?id=jh1nCir1R3d",
+        code: "",
+        pdf: "",
+        keywords: ["federated learning", "decentralized", "wait-free", "communication", "distributed systems"]
+    },
+    {
+        id: "icra-23-sparse-rewards-rl",
+        title: "Dealing with Sparse Rewards in Continuous Control Robotics via Heavy-Tailed Policy Optimization",
+        authors: ["S.Chakraborty", "A. S. Bedi", "K. Weerakoon", "P. Poddar", "A. Koppel", "P. Tokekar", "D. Manocha"],
+        venue: "ICRA",
+        year: 2023,
+        abstract: "",
+        link: "https://arxiv.org/search/cs?searchtype=author&query=Bedi%2C+A+S",
+        code: "",
+        pdf: "",
+        keywords: ["sparse rewards", "policy optimization", "robotics", "reinforcement learning", "heavy-tailed"]
+    },
+    {
+        id: "icra-23-multi-robot-task-rl",
+        title: "RTAW: An Attention Inspired Reinforcement Learning Method for Multi-Robot Task Allocation in Warehouse Environments",
+        authors: ["A. Aggarwal", "A. S. Bedi", "D. Manocha"],
+        venue: "ICRA",
+        year: 2023,
+        abstract: "",
+        link: "https://arxiv.org/search/cs?searchtype=author&query=Bedi%2C+A+S",
+        code: "",
+        pdf: "",
+        keywords: ["multi-robot", "task allocation", "warehouse", "attention", "reinforcement learning"]
+    },
+    {
+        id: "icra-23-decentralized-exploration",
+        title: "Decentralized Multi-agent Exploration with Limited Inter-agent Communications",
+        authors: ["H. He", "A. Koppel", "A. S. Bedi", "D. Stilwell", "M. Farhood"],
+        venue: "ICRA",
+        year: 2023,
+        abstract: "",
+        link: "https://arxiv.org/search/cs?searchtype=author&query=Bedi%2C+A+S",
+        code: "",
+        pdf: "",
+        keywords: ["decentralized", "multi-agent", "exploration", "communication", "robotics"]
+    },
+    {
+        id: "aaai-23-constrained-rl",
+        title: "Achieving Zero Constraint Violation for Constrained Reinforcement Learning via Conservative Natural Policy Gradient Primal-Dual Algorithm",
+        authors: ["Q. Bai", "A. S. Bedi", "V. Aggarwal"],
+        venue: "AAAI",
+        year: 2023,
+        abstract: "",
+        link: "https://arxiv.org/search/cs?searchtype=author&query=Bai%2C+Q",
+        code: "",
+        pdf: "",
+        keywords: ["constrained RL", "policy gradient", "primal-dual", "reinforcement learning"]
+    },
+    {
+        id: "aaai-23-coreset-stein-rl",
+        title: "Posterior Coreset Construction with Kernelized Stein Discrepancy for Model-Based Reinforcement Learning",
+        authors: ["S.Chakraborty", "A. S. Bedi", "A. Koppel", "B. Sadler", "F. Huang", "P. Tokekar", "D. Manocha"],
+        venue: "AAAI",
+        year: 2023,
+        abstract: "",
+        link: "https://arxiv.org/search/cs?searchtype=author&query=Bedi%2C+A+S",
+        code: "",
+        pdf: "",
+        keywords: ["coreset", "Stein discrepancy", "model-based RL", "reinforcement learning"]
+    },
 ];
 
 // People data
@@ -310,7 +310,7 @@ export const people: Person[] = [
         scholar: "https://scholar.google.com/citations?user=zE8aFIwAAAAJ&hl=en",
         email: "sghosal@umd.edu"
     },
-    
+
 
     {
         id: "soumik-ghosh",
@@ -333,7 +333,7 @@ export const people: Person[] = [
         email: "soumik.ghosh@ucf.edu"
     },
 
-    
+
 
     {
         id: "prashant-trivedi",
@@ -396,10 +396,10 @@ export const people: Person[] = [
         scholar: "https://scholar.google.com/citations?user=VzkTu6kAAAAJ&hl=en&oi=ao",
         email: "utsavz@iitk.ac.in"
     }
-    
-    
 
-   
+
+
+
 ];
 
 // Blog posts data
@@ -517,7 +517,7 @@ export const projects: Project[] = [
         collaborators: ["Ethics in Technology Center", "Policy Research Institute"],
         funding: ["National Institute of Standards and Technology"]
     }
-]; 
+];
 
 export interface News {
     id: string;
@@ -528,6 +528,12 @@ export interface News {
 }
 
 export const news: News[] = [
+    {
+        id: "new-student-2025",
+        title: "Welcoming a new PhD student to the lab",
+        date: new Date("2025-08-20T12:00:00Z"),
+        excerpt: "We're delighted to welcome a new PhD student, Jivjot Singh, joining our lab this Fall 2025 semester.",
+    },
     {
         id: "new-paper-icml-2025",
         title: "New paper accepted at ICML 2025",
